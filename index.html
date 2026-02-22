@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.slider {
+    width: 80%;
+    max-width: 800px;
+}
+
+.slider img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+    <img id="slide" src="immagini/foto1.jpg">
+</div>
+
+<div class="buttons">
+    <button onclick="prevSlide()">Indietro</button>
+    <button onclick="nextSlide()">Avanti</button>
+</div>
+
+<br>
+
+<button onclick="toggleMusic()">Attiva / Disattiva Musica</button>
+
+<audio id="bg-music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const images = [
+    "immagini/foto1.jpg",
+    "immagini/foto2.jpg",
+    "immagini/foto3.jpg",
+    "immagini/foto4.jpg",
+    "immagini/foto5.jpg",
+    "immagini/foto6.jpg",
+    "immagini/foto7.jpg",
+    "immagini/foto8.jpg",
+    "immagini/foto9.jpg",
+    "immagini/foto10.jpg"
+];
+
+let current = 0;
+
+function showSlide(index) {
+    document.getElementById("slide").src = images[index];
+}
+
+function nextSlide() {
+    current++;
+    if (current >= images.length) {
+        current = 0;
+    }
+    showSlide(current);
+}
+
+function prevSlide() {
+    current--;
+    if (current < 0) {
+        current = images.length - 1;
+    }
+    showSlide(current);
+}
+
+function toggleMusic() {
+    const music = document.getElementById("bg-music");
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>
